@@ -1,0 +1,31 @@
+*{margin:0;padding:0;list-style: none;border:0;outline:0}
+html, body {height: 100%;margin: 0;padding: 0;}
+img{width:100%;height:100%}
+.article{height: 100%;width:100%;}
+.article #map{height: 100%;width:100%;z-index:1;float:left}
+.article #tree{height: 100%;width:250px;z-index:2;position:absolute;float:right;overflow: hidden;background-color:#FFFFFF}
+.article #tree #mkTimeLine{width:100%;background-color:#58ACFA;height:50px}
+.article #tree #mkTimeLine > div{width:50%;float:left;color:#FFFFFF;font-weight:bold;padding-top:12px;padding-left:5px;font-size:18px}
+.article #tree #mkTimeLine > a{border: none;float:right;width:40px;height:40px;margin-right:10px;margin-top:5px;}
+.article #tree #timeLine,.article #tree #addInfo{width:99%;height:100%;padding-top:20px; overflow-y:auto;border:1px solid #313131;float:left;display: block}
+.article #tree #timeLine > ul{width:100%;list-style:none;}
+.article #tree #timeLine > ul #Object1,#Object2{background-color:white}
+.article #tree #timeLine > ul > li {width:100%;height:50px;padding-left:10px;}
+.article #tree #timeLine > ul > li #Object_img{width:20px;height:100%;float:left}
+.article #tree #addInfo{display: none}
+.article #tree #addInfo form{width:230px;padding: 10px;}
+.article #tree #addInfo form button{margin-left:35%;width:20%;}
+.article #tree #addInfo form > ul{width:100%;list-style:none;margin-bottom:80px;}
+.article #tree #addInfo form > ul li{margin-top:20px;}
+.article #tree #addInfo form > ul li #qus:hover #balloon {display:block}
+.article #tree #addInfo form > ul li #balloon {display: none;position: absolute;background: #ccc;height: 50px;width: 120px;margin: 0 auto 10px;left: 115px;top: 340px;animation-duration: 2s;animation-name: hello;font-size: 12px;}
+.article #tree #addInfo form > ul li #balloon:after{content: '';position: absolute;border-bottom: 10px solid #ccc;border-right: 5px solid transparent;border-left: 5px solid transparent;bottom: 49px;left: 102px;}
+.article #tree #addInfo form > ul > li input{border: 1px solid #000000}
+.article #tree #addInfo form > ul > li a{border: none;float:right;width:20px;height:20px;margin-right:10px;margin-top:5px;}
+#search{z-index:2;position:absolute;left:270px;top:60px}
+
+@keyframes Cloud
+{
+    0%{opacity:1;}
+    100%{opacity:0;}
+}

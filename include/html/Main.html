@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<script src="https://maps.googleapis.com/maps/api/js?"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCMby8FkLkR-W_THN2plzHj4QkIxEGWvhM&callback=initMap&sensor=false&libraries=places" async defer></script>
+  <script type="text/javascript" src="../js/google.js"></script>
+  <script type="text/javascript" src="../js/main.js"></script>
+  </head>
+  <body>
+    <div class="article">
+		<div id="map"></div>
+		<div id="tree">
+			<div id="mkTimeLine">
+				<div>일정 추가하기</div>
+				<a id="plusbtn" onclick="mkPlan()"><img src="../images/plus.png"></a>
+			</div>
+			<div id="timeLine">
+        <ul>
+          <li id="Object1" onclick="">
+            <div id="Object_img">
+              <img src="../images/line_blue.png">
+            </div>
+            <div id="Object_info"> 후쿠오카 공항</div>
+            <div id="Object_time" style="color:blue">17:20</div>
+          </li>
+          <li id="Object2">
+            <div id="Object_img">
+              <img src="../images/line_blue.png">
+            </div>
+            <div id="Object_info">코로호비 숙소</div>
+            <div id="Object_time" style="color:blue">19:00</div>
+          </li>
+        </ul>
+      </div>
+      <div id="addInfo">
+        <form name = "form" >
+          <ul>
+            <li>
+              <span>장소명</span>
+              <input type="text" name="" maxlength="10" id="placeName">
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <span>도착 시간</span>
+              <select name="hour" id="hour">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>:
+              <select name="minute">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <span>위치 지정</span>
+              <input type="text" name="" id="Lat" readonly>
+              <input type="text" name="" id="Lng"readonly>
+              <a id="qus"><img src="../images/info.png">
+                <div id="balloon">우측 지도에서 원하는 위치에 마커를 찍으세요</div>
+              </a>
+            </li>
+          </ul>
+          <button onclick="ok()">저장</button>
+        </form>
+
+			</div>
+	</div>
+
+
+
+    <div id="search">
+		<label for="locationTextField">Location</label>
+        <input id="locationTextField" type="text" size="50">
+	</div>
+
+	<script>
+
+    </script>
+  </body>
+</html>
