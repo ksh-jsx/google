@@ -1,6 +1,6 @@
-var infos = 
+var infoArr = 
 [
-    {Name:"후쿠오카 공항",time_h:5,time_m:20,lat:33.55,lng:130.4}
+    {Name:"후쿠오카 공항",time_h:5,time_m:20,lat:33.5903205871582,lng:130.4467010498047}
 ];
 
 var nameValue = document.getElementById("placeName").value;
@@ -21,6 +21,19 @@ function ok()
 {
     document.getElementById("addInfo").style.display="none";
     document.getElementById("timeLine").style.display="block";
-    infos.push({Name:nameValue,time_h:timeHValue,time_m:timeMValue,lat:latValue,lng:lngValue});
+    infoArr.push({Name:nameValue,time_h:timeHValue,time_m:timeMValue,lat:latValue,lng:lngValue});
+    mysql();
+}
+
+function mysql()
+{
+    connection.query(`INSERT INTO infos VALUES(?,?,?,?,?,?,?)`,[nameValue, 1, 24, timeHValue, timeMValue, latValue, lngValue], function (error, results, fields) {
+        if (error) {
+            console.log(error);
+        }
+        console.log(results);
+      });
+
+    connection.end();
 
 }
