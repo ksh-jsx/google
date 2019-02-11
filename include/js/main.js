@@ -22,7 +22,6 @@ function ok()
     document.getElementById("addInfo").style.display="none";
     document.getElementById("timeLine").style.display="block";
     infoArr.push({Name:nameValue,time_h:timeHValue,time_m:timeMValue,lat:latValue,lng:lngValue});
-    mysql();
 }
 
 function mysql()

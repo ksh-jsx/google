@@ -14,8 +14,9 @@ img{width:100%;height:100%}
 .article #tree #timeLine > ul > li #Object_img{width:20px;height:100%;float:left}
 .article #tree #addInfo{display: none}
 .article #tree #addInfo form{width:230px;padding: 10px;}
-.article #tree #addInfo form #okbtn{margin-left:35%;width:20%;}
-.article #tree #addInfo form > ul{width:100%;list-style:none;margin-bottom:80px;}
+.article #tree #addInfo form #okbtn{margin-left:35%;width:25%;text-decoration:none;background-color:#58ACFA; }
+.article #tree #addInfo form #okbtn input[type=submit]{text-decoration: none;padding-left:13px;color:#ffffff;background-color:#58ACFA;}
+.article #tree #addInfo form > ul{width:100%;list-style:none;margin-bottom:80px;font-weight: bold;}
 .article #tree #addInfo form > ul li{margin-top:20px;}
 .article #tree #addInfo form > ul li #qus:hover #balloon {display:block}
 .article #tree #addInfo form > ul li #balloon {display: none;position: absolute;background: #ccc;height: 50px;width: 120px;margin: 0 auto 10px;left: 115px;top: 380px;animation-duration: 2s;animation-name: hello;font-size: 12px;}

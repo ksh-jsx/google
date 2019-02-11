@@ -38,7 +38,7 @@
         </ul>
       </div>
       <div id="addInfo">
-        <form name = "form" >
+        <form action="/insert_process" method="post">
           <ul>
             <li>
               <span>장소명</span>
@@ -64,17 +64,15 @@
               </a>
             </li>
           </ul>
-          <input type="button" value="저장" id="okbtn" onclick="ok()">
+          <div id="okbtn">
+              <input type="submit">
+          </div>
         </form>
-
 			</div>
 	</div>
-
-
-
-    <div id="search">
+  <div id="search">
 		<label for="locationTextField">Location</label>
-        <input id="locationTextField" type="text" size="50">
+    <input id="locationTextField" type="text" size="50">
 	</div>
   <script>
     var select1 = '';
