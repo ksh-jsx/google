@@ -1,8 +1,3 @@
-var infoArr = 
-[
-    {Name:"후쿠오카 공항",time_h:5,time_m:20,lat:33.5903205871582,lng:130.4467010498047}
-];
-
 var nameValue = document.getElementById("placeName").value;
 var timeHValue = document.getElementById("hour").value;
 var timeMValue = document.getElementById("minute").value;
@@ -21,7 +16,6 @@ function ok()
 {
     document.getElementById("addInfo").style.display="none";
     document.getElementById("timeLine").style.display="block";
-    infoArr.push({Name:nameValue,time_h:timeHValue,time_m:timeMValue,lat:latValue,lng:lngValue});
 }
 
 function mysql()
