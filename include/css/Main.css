@@ -22,7 +22,7 @@ img{width:100%;height:100%}
 .article #tree #addInfo form > ul li #balloon {display: none;position: absolute;background: #ccc;height: 50px;width: 120px;margin: 0 auto 10px;left: 115px;top: 380px;animation-duration: 2s;animation-name: hello;font-size: 12px;}
 .article #tree #addInfo form > ul li #balloon:after{content: '';position: absolute;border-bottom: 10px solid #ccc;border-right: 5px solid transparent;border-left: 5px solid transparent;bottom: 49px;left: 102px;}
 .article #tree #addInfo form > ul > li input{border: 1px solid #000000}
-.article #tree #addInfo form > ul > li a{border: none;float:right;width:20px;height:20px;margin-right:10px;margin-top:5px;}
+.article #tree #addInfo form > ul > li > a{border: none;float:right;width:20px;height:20px;margin-right:10px;margin-top:5px;}
 #search{z-index:2;position:absolute;left:270px;top:60px}
 
 @keyframes Cloud

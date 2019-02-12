@@ -18,15 +18,3 @@ function ok()
     document.getElementById("timeLine").style.display="block";
 }
 
-function mysql()
-{
-    connection.query(`INSERT INTO infos VALUES(?,?,?,?,?,?,?)`,[nameValue, 1, 24, timeHValue, timeMValue, latValue, lngValue], function (error, results, fields) {
-        if (error) {
-            console.log(error);
-        }
-        console.log(results);
-      });
-
-    connection.end();
-
-}

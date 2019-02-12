@@ -4,12 +4,19 @@
     <title>Simple Map</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="../css/main.css">
+  <link rel="stylesheet" type="text/css" href="../css/main.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <style>
+    .ui-datepicker{ font-size: 5px; width: 165px; }
+    .ui-datepicker table{width:100%;}
+  </style>
 	<script src="https://maps.googleapis.com/maps/api/js?"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCMby8FkLkR-W_THN2plzHj4QkIxEGWvhM&callback=initMap&sensor=false&libraries=places" async defer></script>
   <script type="text/javascript" src="../js/google.js"></script>
   <script type="text/javascript" src="../js/main.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   </head>
   <body>
     <div class="article">
@@ -47,6 +54,12 @@
           </ul>
           <ul>
             <li>
+              <span>날짜&nbsp;&nbsp;&nbsp;</span>
+              <input type="text" id="datepicker" name = "Date">
+            </li>
+          </ul>
+          <ul>
+            <li>
               <span>도착 시간</span>
               <select name="hour" id="hour">
               </select>:
@@ -75,13 +88,24 @@
     <input id="locationTextField" type="text" size="50">
 	</div>
   <script>
+    $('#datepicker').datepicker({
+        altField : '#getdate',
+        dateFormat : 'yy년 mm월 dd일',
+        maxDate : 365,
+        minDate : 0
+    });
+
+
     var select1 = '';
-    for (i=0;i<=23;i++){
+    for (i=0;i<=23;i++)
+    {
       select1 += '<option val=' + i + '>' + i + '</option>';
     }
     $('#hour').html(select1);
+
     var select2 = '';
-    for (i=0;i<=60;i++){
+    for (i=0;i<=60;i++)
+    {
       select2 += '<option val=' + i + '>' + i + '</option>';
     }
     $('#minute').html(select2);
