@@ -31,7 +31,7 @@ app.post('/insert_process', function(request, response){
       });
       request.on('end', function(){
         var post = qs.parse(body);
-        connection.query(`INSERT INTO infos VALUES(?,?,?,?,?,?,?)`,[post.placeName, 1, 24, post.hour, post.minute, post.lat, post.lng], function (error, results, fields) {
+        connection.query(`INSERT INTO infos VALUES(?,?,?,?,?,?,?)`,[post.placeName, post.Date[6]+post.Date[7], post.Date[10]+post.Date[11], post.hour, post.minute, post.lat, post.lng], function (error, results, fields) {
           if(error){
             throw error;
           }

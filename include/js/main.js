@@ -14,7 +14,8 @@ function mkPlan()
 
 function ok()
 {
-    document.getElementById("addInfo").style.display="none";
-    document.getElementById("timeLine").style.display="block";
+    var date = document.getElementById("datepicker").value;
+    alert(date[10]+date[11]);
+    
 }
 
