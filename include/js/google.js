@@ -46,21 +46,44 @@ function setMapOnAll(map) //배열에 저장된 마커 삭제
 function init()
 {
 	var input = document.getElementById('locationTextField');
-	var Searched_lat,Searched_lng
 	var autocomplete = new google.maps.places.Autocomplete(input);
+	var Searched_lat,Searched_lng;
 	google.maps.event.addListener(autocomplete, 'place_changed', function () 
 	{
+		var marker;
 		var place = autocomplete.getPlace();
-			//검색된 위치 좌표
-      Searched_lat = place.geometry.location.lat();
-      Searched_lng = place.geometry.location.lng();
-			//검색된 위치로 이동
-			map = new google.maps.Map(document.getElementById('map'),
-			{
-				center: {lat: Searched_lat, lng: Searched_lng},
-				zoom: 15
-			});
-			makeMarker(map);
+		var size_x = 60; // 마커 크기
+		var size_y = 60;
+		var strlength = document.getElementById("locationTextField").value;
+		strlength.length;
+		// 마커 정보
+		var image = new google.maps.MarkerImage( 'http://www.larva.re.kr/home/img/boximage3.png',
+                '',
+                '',
+                new google.maps.Size(size_x, size_y));
+		//검색된 위치 좌표
+    Searched_lat = place.geometry.location.lat();
+    Searched_lng = place.geometry.location.lng();
+		var markLocation = new google.maps.LatLng(Searched_lat, Searched_lng);
+		//검색된 위치 마커찍기
+		map = new google.maps.Map(document.getElementById('map'),
+		{
+			center: {lat: Searched_lat, lng: Searched_lng},
+			zoom: strlength.length
+		});
+		marker = new google.maps.Marker
+		({
+			position: markLocation, // 위치
+			map: map,
+			icon: image, // 마커 모양
+			//info: 정보
+			title: place.name // 클릭시 나오는 정보
+		});
+		if(document.getElementById("timeLine").style.display==="none")
+		{
+			document.getElementById("Lat").value = Searched_lat;
+			document.getElementById("Lng").value = Searched_lng;
+		}
   });
 }
 
