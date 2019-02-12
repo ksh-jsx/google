@@ -12,10 +12,3 @@ function mkPlan()
 
 }
 
-function ok()
-{
-    var date = document.getElementById("datepicker").value;
-    alert(date[10]+date[11]);
-    
-}
-
