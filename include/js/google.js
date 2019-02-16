@@ -2,7 +2,7 @@ var map;
 var mousedUp = false;
 var markers = [];
 var locations = [];
-function initMap()
+function initMap()//시작 화면
 {
 
 	map = new google.maps.Map(document.getElementById('map'),
@@ -43,7 +43,7 @@ function setMapOnAll(map) //배열에 저장된 마커 삭제
 	}
 }
 
-function init()
+function init()//검색 
 {
 	var input = document.getElementById('locationTextField');
 	var autocomplete = new google.maps.places.Autocomplete(input);
@@ -79,6 +79,8 @@ function init()
 			//info: 정보
 			title: place.name // 클릭시 나오는 정보
 		});
+		markers.push(marker);//배열에 마커 정보 넣기
+		makeMarker(map);
 		if(document.getElementById("timeLine").style.display==="none")
 		{
 			document.getElementById("Lat").value = Searched_lat;

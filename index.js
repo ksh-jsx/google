@@ -42,4 +42,22 @@ app.post('/insert_process', function(request, response){
     });
 });
 
+app.post('/select_process', function(request, response){
+  var body = '';
+      request.on('data', function(data){
+          body = body + data;
+      });
+      request.on('end', function(){
+        var post = qs.parse(body);
+        connection.query(`select * from infos order by Month asc,Date asc,time_h asc,time_m asc;`, function (error, results, fields) {
+          if(error){
+            throw error;
+          }
+            response.writeHead(302, {Location: `/`});
+            response.end();
+          }//?????
+        )
+    });
+});
+
 app.listen(2000);

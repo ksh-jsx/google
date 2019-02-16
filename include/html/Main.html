@@ -49,13 +49,13 @@
           <ul>
             <li>
               <span>장소명</span>
-              <input type="text" name="placeName" maxlength="10" id="placeName" autocomplete="off">
+              <input type="text" name="placeName" maxlength="20" id="placeName" autocomplete="off">
             </li>
           </ul>
           <ul>
             <li>
               <span>날짜&nbsp;&nbsp;&nbsp;</span>
-              <input type="text" id="datepicker" name ="Date">
+              <input type="text" id="datepicker" name ="Date" autocomplete="off">
             </li>
           </ul>
           <ul>
@@ -92,7 +92,7 @@
         altField : '#getdate',
         dateFormat : 'yy년 mm월 dd일',
         maxDate : 365,
-        minDate : 0
+        minDate : -365
     });
     
 
