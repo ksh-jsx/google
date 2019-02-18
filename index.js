@@ -5,7 +5,7 @@ var express = require('express');
 var app = express();
 var mysql = require('mysql');
 var qs = require('querystring');
-
+var template = require('./lib/template.js');
 var connection = mysql.createConnection({
 host     : 'localhost',
 user     : 'root',
@@ -18,10 +18,26 @@ connection.connect();
 app.use(express.static('include'));
 
 app.get('/',function(request,response){
-	fs.readFile('include/html/Main.html',function(err,data){
-		response.writeHead(200, {'Content-Type': 'text/html'});
-		response.end(data);
-	});
+  connection.query(`select * from infos order by Month asc,Date asc,time_h asc,time_m asc`, function(error,topics){
+    var timeline ='' 
+    for(var i=0;i<topics.length;i++)
+    {
+      
+      timeline = timeline + 
+      ` 
+      <li id="Object${i}" onclick="">
+        <div id="Object_img">
+          <img src="../images/line_blue.png">
+        </div>
+        <div id="Object_info">${topics[i].Name}</div>
+        <div id="Object_time" style="color:blue">${topics[i].time_h}:${topics[i].time_m}</div>
+      </li>
+      `
+    }
+    var html = template.HTML(timeline);
+    response.writeHead(200);
+    response.end(html);
+  });
 });
 
 app.post('/insert_process', function(request, response){
@@ -60,4 +76,4 @@ app.post('/select_process', function(request, response){
     });
 });
 
-app.listen(2000);
+app.listen(3000);
