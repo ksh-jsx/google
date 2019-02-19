@@ -23,9 +23,9 @@ app.get('/',function(request,response){
     var banner = ``;
     var png = "";
     var bannerOn;
-    var pngNon = "../images/line_blue_non.png";
+    var pngNon = "../images/line_blue_dot.png";
     var pngAbove = "../images/line_blue_nonAbove.png";
-    var pngBottom = "../images/line_blue_nonbottom.png";
+    var pngBottom = "../images/line_blue_nonBottom.png";
     var pngOn = "../images/line_blue.png";
     for(var i=0;i<topics.length;i++)
     {
@@ -78,9 +78,9 @@ app.get('/',function(request,response){
       timeline = timeline + 
           ` 
           ${banner}
-          <li id="Object${i}" onclick="">
+          <li id="Object${i}" onclick="goto(${topics[i].Lat},${topics[i].Lng});push('Object${i}','img${i}');">
             <div id="Object_img">
-              <img src=${png}>
+              <img src=${png} id = "img${i}">
             </div>
             <div id="Object_info">${topics[i].Name}</div>
             <div id="Object_time" style="color:blue">${topics[i].time_h}:${topics[i].time_m}</div>

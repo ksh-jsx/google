@@ -17,7 +17,8 @@ img{width:100%;height:100%}
 .article #tree #timeLine > ul #Object+*{background-color:white}
 .article #tree #timeLine > ul > li {width:100%;height:55px;padding-left:10px;}
 .article #tree #timeLine > ul > li #Object_img{width:20px;height:100%;float:left}
-.article #tree #timeLine > ul > li #Object_info{padding-left:30px;padding-top:8px;}
+.article #tree #timeLine > ul > li #Object_img img{background-color: #FFFFFF}
+.article #tree #timeLine > ul > li #Object_info{padding-left:30px;padding-top:8px;font-weight: bold}
 .article #tree #timeLine > ul > li #Object_time{padding-left:30px;padding-top:0px;}
 .article #tree #addInfo{display: none}
 .article #tree #addInfo form{width:230px;padding: 10px;}
