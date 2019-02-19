@@ -19,36 +19,74 @@ app.use(express.static('include'));
 
 app.get('/',function(request,response){
   connection.query(`select * from infos order by Month asc,Date asc,time_h asc,time_m asc`, function(error,topics){
-    var timeline ='' 
+    var timeline ='' ;
+    var banner = ``;
+    var png = "";
+    var bannerOn;
+    var pngNon = "../images/line_blue_non.png";
+    var pngAbove = "../images/line_blue_nonAbove.png";
+    var pngBottom = "../images/line_blue_nonbottom.png";
+    var pngOn = "../images/line_blue.png";
     for(var i=0;i<topics.length;i++)
     {
-     if(i == 0 || topics[i].Date>topics[i-1].Date)
-     {
+      bannerOn  = `<div id = "planDate">${topics[i].Month}월${topics[i].Date}일</div>`;
+      if(i == 0)
+      {
+        banner = bannerOn;
+        if(topics[i].Date != topics[i+1].Date)
+          png = pngNon;
+        else
+          png = pngAbove;
+      }
+      else if(i == topics.length-1)
+      {
+        
+        if(topics[i].Date != topics[i-1].Date)
+        {
+          banner = bannerOn;
+          png = pngNon;
+        }
+        else
+        {
+          banner = ``;
+          png = pngBottom;
+        }
+      }
+      else
+      {
+        if(topics[i].Date != topics[i-1].Date && topics[i].Date != topics[i+1].Date )
+        {
+          banner = bannerOn;
+          png = pngNon;
+        }
+        else if(topics[i].Date > topics[i-1].Date)
+        {
+          banner = bannerOn;
+          png = pngAbove;
+        }
+        else if(topics[i+1].Date > topics[i].Date)
+        {
+          banner = ``;
+          png = pngBottom;
+        }
+        else
+        {
+          banner = ``;
+          png = pngNon;
+        }
+      }
       timeline = timeline + 
-      ` 
-      <div id = "planDate">${topics[i].Month}월${topics[i].Date}일</div>
-      <li id="Object${i}" onclick="">
-        <div id="Object_img">
-          <img src="../images/line_blue.png">
-        </div>
-        <div id="Object_info">${topics[i].Name}</div>
-        <div id="Object_time" style="color:blue">${topics[i].time_h}:${topics[i].time_m}</div>
-      </li>
-      `
-     } 
-     else
-     {
-      timeline = timeline + 
-      ` 
-      <li id="Object${i}" onclick="">
-        <div id="Object_img">
-          <img src="../images/line_blue.png">
-        </div>
-        <div id="Object_info">${topics[i].Name}</div>
-        <div id="Object_time" style="color:blue">${topics[i].time_h}:${topics[i].time_m}</div>
-      </li>
-      `
-     }
+          ` 
+          ${banner}
+          <li id="Object${i}" onclick="">
+            <div id="Object_img">
+              <img src=${png}>
+            </div>
+            <div id="Object_info">${topics[i].Name}</div>
+            <div id="Object_time" style="color:blue">${topics[i].time_h}:${topics[i].time_m}</div>
+          </li>
+          `
+     
     }
     var html = template.HTML(timeline);
     response.writeHead(200);
