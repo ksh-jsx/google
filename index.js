@@ -22,7 +22,22 @@ app.get('/',function(request,response){
     var timeline ='' 
     for(var i=0;i<topics.length;i++)
     {
-      
+     if(i == 0 || topics[i].Date>topics[i-1].Date)
+     {
+      timeline = timeline + 
+      ` 
+      <div id = "planDate">${topics[i].Month}월${topics[i].Date}일</div>
+      <li id="Object${i}" onclick="">
+        <div id="Object_img">
+          <img src="../images/line_blue.png">
+        </div>
+        <div id="Object_info">${topics[i].Name}</div>
+        <div id="Object_time" style="color:blue">${topics[i].time_h}:${topics[i].time_m}</div>
+      </li>
+      `
+     } 
+     else
+     {
       timeline = timeline + 
       ` 
       <li id="Object${i}" onclick="">
@@ -33,6 +48,7 @@ app.get('/',function(request,response){
         <div id="Object_time" style="color:blue">${topics[i].time_h}:${topics[i].time_m}</div>
       </li>
       `
+     }
     }
     var html = template.HTML(timeline);
     response.writeHead(200);
@@ -55,25 +71,9 @@ app.post('/insert_process', function(request, response){
             response.end();
           }
         )
-    });
+    });ls
 });
 
-app.post('/select_process', function(request, response){
-  var body = '';
-      request.on('data', function(data){
-          body = body + data;
-      });
-      request.on('end', function(){
-        var post = qs.parse(body);
-        connection.query(`select * from infos order by Month asc,Date asc,time_h asc,time_m asc;`, function (error, results, fields) {
-          if(error){
-            throw error;
-          }
-            response.writeHead(302, {Location: `/`});
-            response.end();
-          }//?????
-        )
-    });
-});
+
 
 app.listen(3000);
