@@ -72,7 +72,7 @@ app.get('/',function(request,response){
         else
         {
           banner = ``;
-          png = pngNon;
+          png = pngOn;
         }
       }
       timeline = timeline + 
@@ -109,7 +109,7 @@ app.post('/insert_process', function(request, response){
             response.end();
           }
         )
-    });ls
+    })
 });
 
 
