@@ -78,9 +78,9 @@ app.get('/',function(request,response){
       timeline = timeline + 
           ` 
           ${banner}
-          <li id="Object${i}" onclick="goto(${topics[i].Lat},${topics[i].Lng});push('Object${i}','img${i}');">
+          <li id="Object${i}" class = "obj" onclick="push('Object${i}','img${i}',${topics[i].Lat},${topics[i].Lng},${topics.length})">
             <div id="Object_img">
-              <img src=${png} id = "img${i}">
+              <img src=${png} id = "img${i}" class="imgs">
             </div>
             <div id="Object_info">${topics[i].Name}</div>
             <div id="Object_time" style="color:blue">${topics[i].time_h}:${topics[i].time_m}</div>

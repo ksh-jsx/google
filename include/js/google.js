@@ -109,6 +109,7 @@ function goto(inputLat,inputLng)
 		icon: image, 
 		title: 'serachedLocation' 
 	});
+	markers.push(marker);
 }
 
 google.maps.event.addDomListener(window, 'load', init);
