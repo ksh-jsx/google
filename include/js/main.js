@@ -20,12 +20,12 @@ function back()
     document.getElementById("timeLine").style.display="block";
 }
 
-function push(ob,img,lat,lng,loop)
+function push(ob,img,modDel,lat,lng,loop)
 {
     if(document.getElementById(ob).style.backgroundColor ===  "" || document.getElementById(ob).style.backgroundColor ===  "rgb(255, 255, 255)")
     {
         reset(loop);
-        document.getElementsByClassName("obj")[0].style.backgroundColor = "#FFFFFF";
+        document.getElementById(modDel).style.display = "block";        
         document.getElementById(ob).style.backgroundColor = "#A9E2F3";
         document.getElementById(ob).style.color = "#FFFFFF";
         if( document.getElementById(img).src.indexOf('Above') != -1)
@@ -47,12 +47,13 @@ function push(ob,img,lat,lng,loop)
         goto(lat,lng);
     }
     else
-        pull(ob,img)
+        pull(ob,modDel,img)
 }
 
-function pull(ob,img)
+function pull(ob,modDel,img)
 {
     document.getElementById(ob).style.backgroundColor = "#FFFFFF";
+    document.getElementById(modDel).style.display = "none";        
     document.getElementById(ob).style.color = "#000000";
     if( document.getElementById(img).src.indexOf('Above') != -1)
     {
@@ -78,6 +79,7 @@ function reset(loop)
     for(i=0;i<loop;i++)
     {
         document.getElementsByClassName("obj")[i].style.backgroundColor = "#FFFFFF";
+        document.getElementsByClassName("modDel")[i].style.display = "none";
         document.getElementsByClassName("obj")[i].style.color = "#000000";
         if( document.getElementsByClassName("imgs")[i].src.indexOf('Above') != -1)
         {
