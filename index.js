@@ -6,6 +6,7 @@ var app = express();
 var mysql = require('mysql');
 var qs = require('querystring');
 var template = require('./lib/template.js');
+var process='insert';
 var connection = mysql.createConnection({
 host     : 'localhost',
 user     : 'root',
@@ -83,16 +84,18 @@ app.get('/',function(request,response){
               <img src=${png} id = "img${i}" class="imgs">
             </div>
             <div id="mod_and_del${i}" class="modDel">
-              <button>수정</button>
+              <button onclick="modInfos('${topics[i].Name}',${topics[i].Month},${topics[i].Date},${topics[i].time_h},${topics[i].time_m},${topics[i].Lat},${topics[i].Lng});"> 수정 </button>
               <p></p>
-              <button>삭제</button>
+              <form action="/delete_process" method="post">
+                <input type="hidden" name="placeId" value="${topics[i].id}">
+                <input type="submit" value="삭제">
+              </form>
             </div>
             <div id="Object_info">${topics[i].Name}</div>
             <div id="Object_time" style="color:blue">${topics[i].time_h}:${topics[i].time_m}</div>
            
           </li>
           `
-     
     }
     var html = template.HTML(timeline);
     response.writeHead(200);
@@ -100,14 +103,15 @@ app.get('/',function(request,response){
   });
 });
 
-app.post('/insert_process', function(request, response){
+app.post('/insert_process', function(request, response)
+{
   var body = '';
       request.on('data', function(data){
           body = body + data;
       });
       request.on('end', function(){
         var post = qs.parse(body);
-        connection.query(`INSERT INTO infos VALUES(?,?,?,?,?,?,?)`,[post.placeName, post.Date[6]+post.Date[7], post.Date[10]+post.Date[11], post.hour, post.minute, post.lat, post.lng], function (error, results, fields) {
+        connection.query(`INSERT INTO infos(Name,Month,Date,time_h,time_m,Lat,Lng) VALUES(?,?,?,?,?,?,?)`,[post.placeName, post.Date[6]+post.Date[7], post.Date[10]+post.Date[11], post.hour, post.minute, post.lat, post.lng], function (error, results, fields) {
           if(error){
             throw error;
           }
@@ -118,6 +122,24 @@ app.post('/insert_process', function(request, response){
     })
 });
 
-
+app.post('/delete_process', function(request, response)
+{
+  var body = '';
+  request.on('data', function(data)
+  {
+      body = body + data;
+  });
+  request.on('end', function()
+  {
+    var post = qs.parse(body);
+    connection.query(`DELETE FROM infos WHERE id=?`,[post.placeId], function (error, results) 
+    {
+      if(error)
+        throw error;
+      response.writeHead(302, {Location: `/`});
+      response.end();
+    })
+  });
+});
 
 app.listen(3000);

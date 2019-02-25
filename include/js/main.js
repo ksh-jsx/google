@@ -8,6 +8,8 @@ function mkPlan()
     document.getElementById("plusbtn").style.display="none";
     document.getElementById("addInfo").style.display="block";
     document.getElementById("timeLine").style.display="none";
+
+    return 'insert';
 }
 
 function back()
@@ -98,4 +100,15 @@ function reset(loop)
             document.getElementsByClassName("imgs")[i].src = "../images/line_blue.png";
         }
     }   
+}
+
+function modInfos(Name,Month,Date,Hour,Minute,Lat,Lng,id)
+{
+    mkPlan();
+    document.getElementById("placeName").value = Name;
+    document.getElementById("datepicker").value = "2019년 "+Month+"월 "+Date+"일";
+    document.getElementById("hour").value = Hour;
+    document.getElementById("minute").value = Minute;
+    document.getElementById("Lat").value = Lat;
+    document.getElementById("Lng").value = Lng;
 }

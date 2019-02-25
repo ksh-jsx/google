@@ -21,7 +21,7 @@ img{width:100%;height:100%}
 .article #tree #timeLine > ul > li #Object_info{padding-left:30px;padding-top:8px;font-weight: bold}
 .article #tree #timeLine > ul > li #Object_time{padding-left:30px;padding-top:0px;}
 .article #tree #timeLine > ul > li .modDel{display:none;position:absolute;left:205px;padding-top:5px;}
-.article #tree #timeLine > ul > li .modDel > button{background-color:#58ACFA;color:#FFFFFF;width:40px;font-weight: bold;}
+.article #tree #timeLine > ul > li .modDel > button, .modDel input[type='submit']{background-color:#58ACFA;color:#FFFFFF;width:40px;font-weight: bold;}
 .article #tree #timeLine > ul > li .modDel > p{height:3px;}
 .article #tree #addInfo{display: none}
 .article #tree #addInfo form{width:230px;padding: 10px;}
