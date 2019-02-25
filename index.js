@@ -84,7 +84,7 @@ app.get('/',function(request,response){
               <img src=${png} id = "img${i}" class="imgs">
             </div>
             <div id="mod_and_del${i}" class="modDel">
-              <button onclick="modInfos('${topics[i].Name}',${topics[i].Month},${topics[i].Date},${topics[i].time_h},${topics[i].time_m},${topics[i].Lat},${topics[i].Lng});"> 수정 </button>
+              <button onclick="modInfos('${topics[i].Name}',${topics[i].Month},${topics[i].Date},${topics[i].time_h},${topics[i].time_m},${topics[i].Lat},${topics[i].Lng},${topics[i].id});"> 수정 </button>
               <p></p>
               <form action="/delete_process" method="post">
                 <input type="hidden" name="placeId" value="${topics[i].id}">
@@ -119,7 +119,27 @@ app.post('/insert_process', function(request, response)
             response.end();
           }
         )
+    });
+});
+
+app.post('/modify_process', function(request, response)
+{
+  var body = '';
+  request.on('data', function(data)
+  {
+      body = body + data;
+  });
+  request.on('end', function()
+  {
+    var post = qs.parse(body);
+    connection.query(`UPDATE infos SET Name=?,Month=?,Date=?,time_h=?,time_m=?,Lat=?,Lng=? WHERE id=?`,[post.placeName, post.Date[6]+post.Date[7], post.Date[10]+post.Date[11], post.hour, post.minute, post.lat, post.lng, post.placeId], function (error, results) 
+    {
+      if(error)
+        throw error;
+      response.writeHead(302, {Location: `/`});
+      response.end();
     })
+  })
 });
 
 app.post('/delete_process', function(request, response)

@@ -2,6 +2,7 @@ var i;
 var ob;
 function mkPlan()
 {
+    document.getElementById("process_form").action = "/insert_process";
     document.getElementById("cancel").style.display="block";
     document.getElementById("add").style.display="none";
     document.getElementById("backbtn").style.display="block";
@@ -105,10 +106,16 @@ function reset(loop)
 function modInfos(Name,Month,Date,Hour,Minute,Lat,Lng,id)
 {
     mkPlan();
+    Month_str = Month.toString();
+    Date_str = Date.toString();
+    if(Month_str.length === 1)Month_str = '0'+Month_str;
+    if(Date_str.length === 1)Date_str = '0'+Date_str;
+    document.getElementById("process_form").action = "/modify_process";
     document.getElementById("placeName").value = Name;
-    document.getElementById("datepicker").value = "2019년 "+Month+"월 "+Date+"일";
+    document.getElementById("datepicker").value = "2019년 "+Month_str+"월 "+Date_str+"일";
     document.getElementById("hour").value = Hour;
     document.getElementById("minute").value = Minute;
     document.getElementById("Lat").value = Lat;
     document.getElementById("Lng").value = Lng;
+    document.getElementById("placesId").value = id;
 }
