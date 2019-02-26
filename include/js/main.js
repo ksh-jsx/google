@@ -1,5 +1,8 @@
 var i;
 var ob;
+var count = 0;
+var ob1,img1,modDel1,pName1,lat1,lng1;
+var pushArr = [{one:'ob',two:'img',three:'modDel',four:'pName',five:'lat',six:'lng'}];
 function mkPlan()
 {
     document.getElementById("process_form").action = "/insert_process";
@@ -23,10 +26,25 @@ function back()
     document.getElementById("timeLine").style.display="block";
 }
 
-function push(ob,img,modDel,lat,lng,loop)
+function push(ob,img,modDel,pName,lat,lng,loop)
 {
     if(document.getElementById(ob).style.backgroundColor ===  "" || document.getElementById(ob).style.backgroundColor ===  "rgb(255, 255, 255)")
     {
+        if(count===2)
+        {
+            pushArr.splice(2,1);
+            removeRoute(pushArr[1].four);
+            count--;
+        }
+        if(count<2)
+        {
+            count++;
+            pushArr.push({one:ob,two:img,three:modDel,four:pName,five:lat,six:lng});
+            
+        }
+        if(count===1)
+            getinfos(pushArr[1].one,pushArr[1].two,pushArr[1].three,pushArr[1].four,pushArr[1].five,pushArr[1].six);
+        
         reset(loop);
         document.getElementById(modDel).style.display = "block";        
         document.getElementById(ob).style.backgroundColor = "#A9E2F3";
@@ -47,17 +65,24 @@ function push(ob,img,modDel,lat,lng,loop)
         {
             document.getElementById(img).src = "../images/line_sky.png";
         }
-        goto(lat,lng);
+        goto(pushArr[pushArr.length-1].four,pushArr[pushArr.length-1].five,pushArr[pushArr.length-1].six,'o')
     }
     else
-        pull(ob,modDel,img)
+        pull(ob,modDel,img,loop);
+    
 }
 
-function pull(ob,modDel,img)
+function pull(ob,modDel,img,loop)
 {
+    count--;
+    if(pushArr[1].one === ob)
+        pushArr.splice(1,1);
+    else if(pushArr[2].one != '' && pushArr[2].one === ob)
+        pushArr.splice(2,1);
     document.getElementById(ob).style.backgroundColor = "#FFFFFF";
     document.getElementById(modDel).style.display = "none";        
     document.getElementById(ob).style.color = "#000000";
+   
     if( document.getElementById(img).src.indexOf('Above') != -1)
     {
         document.getElementById(img).src = "../images/line_blue_nonAbove.png";
@@ -75,6 +100,15 @@ function pull(ob,modDel,img)
         document.getElementById(img).src = "../images/line_blue.png";
     }
     setMapOnAll(null);
+    if(pushArr.length != 1)
+        removeRoute(pushArr[1].four);
+    else
+        removeRoute('null');
+    if(count===1)
+    {
+        getinfos(pushArr[1].one,pushArr[1].two,pushArr[1].three,pushArr[1].four,pushArr[1].five,pushArr[1].six);
+        goto(pName1,lat1,lng1,'x');
+    }
 }
 
 function reset(loop)
@@ -100,7 +134,39 @@ function reset(loop)
         {
             document.getElementsByClassName("imgs")[i].src = "../images/line_blue.png";
         }
+
+        document.getElementById(modDel1).style.display = "block";        
+        document.getElementById(ob1).style.backgroundColor = "#A9E2F3";
+        document.getElementById(ob1).style.color = "#FFFFFF";
+        if( document.getElementById(img1).src.indexOf('Above') != -1)
+        {
+            document.getElementById(img1).src = "../images/line_sky_nonAbove.png";
+        }
+        else if( document.getElementById(img1).src.indexOf('Bottom') != -1)
+        {
+            document.getElementById(img1).src = "../images/line_sky_nonBottom.png";
+        }
+        else if( document.getElementById(img1).src.indexOf('dot') != -1)
+        {
+            document.getElementById(img1).src = "../images/line_sky_dot.png";
+        }
+        else
+        {
+            document.getElementById(img1).src = "../images/line_sky.png";
+        }
+        
+        
     }   
+}
+
+function getinfos(ob,img,modDel,pName,lat,lng)
+{
+    ob1 = ob;
+    img1 = img;
+    modDel1 = modDel;
+    pName1 = pName;
+    lat1 = lat;
+    lng1 = lng;
 }
 
 function modInfos(Name,Month,Date,Hour,Minute,Lat,Lng,id)

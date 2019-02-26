@@ -79,7 +79,7 @@ app.get('/',function(request,response){
       timeline = timeline + 
           ` 
           ${banner}
-          <li id="Object${i}" class = "obj" onclick="push('Object${i}','img${i}','mod_and_del${i}',${topics[i].Lat},${topics[i].Lng},${topics.length})">
+          <li id="Object${i}" class = "obj" onclick="push('Object${i}','img${i}','mod_and_del${i}','${topics[i].Name}',${topics[i].Lat},${topics[i].Lng},${topics.length})">
             <div id="Object_img">
               <img src=${png} id = "img${i}" class="imgs">
             </div>
